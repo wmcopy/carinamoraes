@@ -101,6 +101,10 @@
     .carina-video-section .description{margin-bottom:16px}
     .carina-video{width:min(100%,315px);margin:0 auto;aspect-ratio:9/16;position:relative;overflow:hidden;border-radius:20px;border:1px solid #EEDBE3;background:linear-gradient(157deg,#FBE6EE,#FFF7FA 56%,#F0CEDD);box-shadow:var(--shadow);isolation:isolate}
     .carina-video__poster{position:absolute;inset:0;width:100%;height:100%;padding:24px;border:0;background:radial-gradient(ellipse at 13% 16%,rgba(255,255,255,.93),transparent 37%),radial-gradient(ellipse at 92% 87%,rgba(183,31,95,.19),transparent 42%),linear-gradient(151deg,#FFEAF2,#F7DCE8 52%,#F9EFF2);color:#5E3046;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:filter .2s ease}
+    /* Capa real: imagem leve em lazy load; o MP4 continua sem src até o clique. */
+    .carina-video__cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;pointer-events:none}
+    .carina-video__poster::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,10,19,.02) 10%,rgba(26,10,19,.13) 55%,rgba(26,10,19,.25));pointer-events:none}
+    .carina-video__caption{z-index:1;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.65)}
     .carina-video__poster:hover{filter:brightness(1.025)}
     .carina-video__poster:focus-visible{outline:3px solid var(--pink);outline-offset:-5px}
     .carina-video__ornament{position:absolute;width:76%;aspect-ratio:1;border:1px solid rgba(183,31,95,.15);border-radius:50%;top:18%;left:12%;box-shadow:0 0 0 22px rgba(255,255,255,.12),0 0 0 48px rgba(183,31,95,.045);pointer-events:none}
@@ -202,10 +206,9 @@
     <div class="section-head"><span class="kicker">Beleza em movimento</span><span class="rule"></span></div>
     <h2 class="title">Cada detalhe conta <em style="color:var(--pink);font-weight:500">uma história.</em></h2>
     <p class="description">Uma nova perspectiva sobre o cuidado e as transformações do salão.</p>
-    <div class="carina-video" id="carinaVideo" data-video-src="">
+    <div class="carina-video" id="carinaVideo" data-video-src="https://res.cloudinary.com/jcotat5a/video/upload/v1792190075/video01.mp4">
       <button class="carina-video__poster" id="carinaVideoPoster" type="button" aria-label="Abrir vídeo do salão">
-        <span class="carina-video__ornament" aria-hidden="true"></span>
-        <span class="carina-video__editorial" aria-hidden="true"><small>CARINA MORAES</small><strong>Beleza em cada detalhe.</strong></span>
+        <img class="carina-video__cover" src="https://res.cloudinary.com/jcotat5a/image/upload/v1792190288/ce003708-e530-4f80-abbf-ff92b1703206.png" alt="" loading="lazy" decoding="async" width="630" height="1120">
         <span class="carina-video__play" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M8 5.8c0-.78.87-1.25 1.53-.83l10 6.2a.97.97 0 0 1 0 1.66l-10 6.2A.98.98 0 0 1 8 18.2V5.8Z"/></svg>
         </span>
@@ -261,8 +264,8 @@
   </script>
 
   <script>
-    /* Definir a URL em #carinaVideo[data-video-src] quando o vídeo estiver disponível.
-       A URL é atribuída ao <video> somente após o toque no play. */
+    /* URL do Cloudinary já configurada em #carinaVideo[data-video-src].
+       O <video> recebe src somente após o toque no play: sem download antecipado do MP4. */
     (()=>{
       const shell=document.getElementById('carinaVideo');
       const poster=document.getElementById('carinaVideoPoster');
