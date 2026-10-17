@@ -22,7 +22,7 @@
   <meta name="twitter:image" content="https://wmcopy.github.io/carinamoraes/og-carina-moraes-logo.jpg">
   <meta name="color-scheme" content="light">
   <title>Carina Moraes | Mega Hair e Beleza em Blumenau</title>
-  <link rel="icon" type="image/png" href="assets/favicon-carina-moraes.png">
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/jcotat5a/image/upload/c_pad,w_64,h_64,b_white,f_png,q_auto/v1792202472/hnvpg6pfzwekb4bldfga.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
@@ -165,12 +165,93 @@
     }
     @media(max-width:350px){.hero h1{font-size:clamp(22px,7.1vw,26px)}}
   
-/* WMCOPY Carina · fotografia integral no destaque, preservando o card e o contraste. */
-.feature{isolation:isolate;background:#3F3039}
-.feature::before{content:"";position:absolute;inset:-16px;background-image:url("https://res.cloudinary.com/jcotat5a/image/upload/f_auto,q_auto:good,c_limit,w_1000/v1792202819/0ce067c5-ffba-417e-8de4-f27a8c4550a1.png");background-position:center;background-size:cover;filter:blur(17px) brightness(.70);pointer-events:none;z-index:0}
-.feature>img{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;object-position:center;display:block}
-.feature::after{z-index:2;inset:0;background:linear-gradient(to top,rgba(17,11,18,.80) 0%,rgba(17,11,18,.38) 33%,rgba(17,11,18,.06) 75%)}
-.feature-overlay{z-index:3}
+/* WMCOPY Carina · card editorial compacto na proporção da fotografia.
+   A imagem cobre 100% do card sem cortes ou faixas laterais. */
+.feature{isolation:isolate;width:min(100%,284px);height:auto;aspect-ratio:465/596;margin-inline:auto;background:#3F3039;border-radius:20px;overflow:hidden}
+.feature::before{content:none}
+.feature>img{position:relative;z-index:1;display:block;width:100%;height:auto;aspect-ratio:465/596;object-fit:contain;object-position:center}
+.feature::after{z-index:2;inset:0;background:linear-gradient(to top,rgba(17,11,18,.83) 0%,rgba(17,11,18,.38) 32%,rgba(17,11,18,.04) 65%,transparent 80%)}
+.feature-overlay{z-index:3;padding:17px 17px 18px}
+.feature-overlay small{font-size:8.5px;letter-spacing:.14em}
+.feature-overlay strong{font-size:clamp(23px,6vw,27px);line-height:1.02;max-width:14ch;margin-top:7px}
+.feature-overlay p{font-size:10.5px;line-height:1.45;margin-top:7px;max-width:26ch}
+@media(max-width:350px){.feature{width:min(100%,262px)}.feature-overlay{padding:14px 14px 15px}.feature-overlay strong{font-size:23px}}
+
+/* WMCOPY r-final — detalhe editorial alinhado à mesma coluna das demais seções.
+   Foto integral sem object-fit:cover, formato compacto e sem alterar scroll/JS. */
+.feature{
+  display:grid;
+  grid-template-columns:minmax(0,43%) minmax(0,57%);
+  align-items:stretch;
+  width:100%;
+  height:auto;
+  min-height:0;
+  aspect-ratio:auto;
+  margin:0;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:#fdf6f8;
+  overflow:hidden;
+  box-shadow:0 10px 26px rgba(77,35,53,.075);
+}
+.feature::before,.feature::after{content:none;display:none}
+.feature>img{
+  display:block;
+  position:relative;
+  z-index:auto;
+  width:100%;
+  height:100%;
+  min-height:0;
+  aspect-ratio:465/596;
+  object-fit:contain;
+  object-position:center;
+  background:#f1e6e8;
+}
+.feature-overlay{
+  position:relative;
+  inset:auto;
+  z-index:auto;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+  min-width:0;
+  padding:15px 16px;
+  background:linear-gradient(140deg,#fffafc 0%,#faf0f4 100%);
+  color:var(--ink);
+}
+.feature-overlay small{
+  color:var(--pink-deep);
+  font-size:9px;
+  line-height:1.45;
+  letter-spacing:.09em;
+  font-weight:750;
+}
+.feature-overlay strong{
+  max-width:none;
+  margin-top:9px;
+  font-family:"Newsreader",Georgia,serif;
+  font-size:clamp(22px,5.8vw,27px);
+  font-weight:500;
+  line-height:1.05;
+  letter-spacing:-.025em;
+  text-wrap:balance;
+}
+.feature-overlay p{
+  max-width:none;
+  margin:10px 0 0;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.48;
+  text-wrap:pretty;
+}
+@media(max-width:350px){
+  .feature{width:100%;grid-template-columns:minmax(0,41%) minmax(0,59%)}
+  .feature-overlay{padding:12px 11px}
+  .feature-overlay small{font-size:8px;letter-spacing:.07em}
+  .feature-overlay strong{font-size:21px;margin-top:7px}
+  .feature-overlay p{font-size:10px;margin-top:8px}
+}
 </style>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -197,7 +278,7 @@
   <main class="shell" id="inicio">
     <section class="hero" aria-label="Apresentação Carina Moraes">
       <div class="eyebrow">Blumenau • Santa Catarina</div>
-      <img class="hero-logo" src="assets/logo-carina-moraes.webp" alt="Carina Moraes, logo do salão de beleza" width="940" height="500" fetchpriority="high">
+      <img class="hero-logo" src="https://res.cloudinary.com/jcotat5a/image/upload/f_auto,q_auto:good,c_limit,w_960/v1792202472/hnvpg6pfzwekb4bldfga.webp" alt="Carina Moraes, logo do salão de beleza" width="940" height="500" fetchpriority="high">
       <div class="hero__line" aria-hidden="true"></div>
       <h1><span class="h1-line">Transformações reais</span><span class="h1-line">para <em>valorizar sua beleza.</em></span></h1>
       <p class="hero__copy">Mega Hair, loiros e coloração em um espaço feito para você se sentir ainda mais linda.</p>
