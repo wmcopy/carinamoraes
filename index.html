@@ -252,6 +252,101 @@
   .feature-overlay strong{font-size:21px;margin-top:7px}
   .feature-overlay p{font-size:10px;margin-top:8px}
 }
+
+/* WMCOPY — refinamento cirúrgico: hero desktop com mesma hierarquia do mobile.
+   Nenhuma regra de altura fixa, max-height ou recálculo de viewport. */
+@media (min-width:680px) {
+  .hero {
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    justify-content:center;
+    height:auto;
+    min-height:0;
+    max-height:none;
+    padding:21px 22px 19px;
+  }
+  .hero .hero-logo { max-width:245px; margin:12px auto 4px; }
+  .hero .hero__line { margin:8px auto 12px; }
+  .hero h1 { font-size:34px; line-height:1.1; margin-bottom:11px; }
+  .hero .hero__copy { max-width:36ch; font-size:12.5px; line-height:1.55; }
+  .hero .primary-cta { min-height:51px; margin-top:19px; padding:12px 15px; border-radius:14px; }
+  .hero-mobile-nav { display:grid; gap:8px; margin-top:10px; }
+  .hero-mobile-link {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    min-height:43px;
+    padding:9px 12px;
+    border:1px solid #F0D5DF;
+    border-radius:12px;
+    background:linear-gradient(180deg,#FFF9FB,#FCEBF2);
+    box-shadow:0 2px 0 rgba(190,58,112,.045),0 5px 12px rgba(70,34,47,.025);
+    color:#39242D;
+    font-size:12.3px;
+    line-height:1.22;
+    font-weight:600;
+    letter-spacing:-.01em;
+    transition:transform .2s ease,border-color .2s ease;
+  }
+  .hero-mobile-link .svg-icon { width:17px; height:17px; flex:none; color:var(--pink); }
+  .hero-mobile-link:hover { transform:translateY(-1px); border-color:#DDA8BD; }
+  .hero-mobile-link:active { transform:scale(.992); }
+  .hero .under-cta { margin-top:11px; font-size:9.5px; gap:5px; }
+  .hero-mobile-scroll {
+    display:flex;
+    align-self:center;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    min-height:35px;
+    margin-top:7px;
+    gap:0;
+    padding:2px 8px;
+    color:var(--pink);
+    font-size:9.5px;
+    line-height:1.2;
+    font-weight:700;
+    letter-spacing:.055em;
+  }
+  .hero-mobile-scroll svg { margin-top:2px; animation:carinaCue 2.2s ease-in-out infinite; }
+  /* Mesma navegação que no mobile: Serviços/Resultados continuam abaixo do hero;
+     os outros três destinos já aparecem acima, sem duplicações. */
+  .nav-list > .nav-card:nth-child(n+3) { display:none; }
+}
+/* r-next | Correção de dobra desktop: seta completa sem alterar geometria mobile. */
+@media(min-width:680px){
+  .shell{margin-top:22px}
+  .hero{padding:16px 20px 13px}
+  .hero .hero-logo{max-width:222px;margin:8px auto 3px}
+  .hero .hero__line{margin:6px auto 10px}
+  .hero h1{font-size:32px;margin-bottom:9px}
+  .hero .primary-cta{min-height:48px;margin-top:15px;padding:11px 15px}
+  .hero-mobile-nav{gap:7px;margin-top:9px}
+  .hero-mobile-link{min-height:41px;padding:8px 12px}
+  .hero .under-cta{margin-top:9px}
+  .hero-mobile-scroll{margin-top:5px;min-height:35px;padding:0 8px}
+}
+/* Antes/depois editorial: imagens em formato integral, divisor ajustável por toque/teclado. */
+.carina-compare{min-width:0}
+.carina-compare__stage{--carina-split:50%;position:relative;isolation:isolate;overflow:hidden;width:100%;height:auto;aspect-ratio:4/5;max-height:480px;border-radius:20px;border:1px solid #E9D6DD;background:linear-gradient(150deg,#F9EAF0,#F4E5E9);box-shadow:0 10px 26px rgba(78,33,53,.075);user-select:none}
+.carina-compare__image{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;object-position:center;pointer-events:none;-webkit-user-drag:none}
+.carina-compare__after{clip-path:inset(0 0 0 var(--carina-split))}
+.carina-compare__divider{position:absolute;z-index:2;left:var(--carina-split);top:0;bottom:0;width:2px;background:#fff;box-shadow:0 0 0 1px rgba(74,26,49,.13),0 0 10px rgba(0,0,0,.1);transform:translateX(-50%);pointer-events:none}
+.carina-compare__handle{position:absolute;top:50%;left:50%;display:flex;align-items:center;justify-content:center;gap:5px;width:48px;height:48px;transform:translate(-50%,-50%);border:2px solid #fff;border-radius:50%;background:var(--pink);color:#fff;box-shadow:0 4px 20px rgba(86,31,56,.22);font-size:19px;line-height:1}
+.carina-compare__tag{position:absolute;z-index:2;top:12px;padding:6px 11px;border-radius:999px;background:rgba(255,255,255,.95);color:#6F284C;font-size:10px;font-weight:700;letter-spacing:.045em;box-shadow:0 3px 13px rgba(30,10,20,.08);pointer-events:none}
+.carina-compare__tag--before{left:12px}.carina-compare__tag--after{right:12px}
+.carina-compare__range{position:absolute;z-index:3;inset:0;display:block;width:100%;height:100%;margin:0;padding:0;appearance:none;-webkit-appearance:none;opacity:0;cursor:ew-resize;touch-action:pan-y}
+.carina-compare__range::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:48px;height:48px;cursor:ew-resize}
+.carina-compare__range::-moz-range-thumb{border:0;width:48px;height:48px;cursor:ew-resize}
+.carina-compare__stage:focus-within{outline:2px solid var(--pink);outline-offset:3px}
+.carina-compare__note{text-align:center;margin:10px 0 0;color:#897680;font-size:11px;line-height:1.45}
+@media(max-width:350px){.carina-compare__stage{border-radius:16px}.carina-compare__handle{width:42px;height:42px}.carina-compare__tag{top:9px;padding:5px 9px;font-size:9px}}
+
+@media (prefers-reduced-motion:reduce) {
+  .hero-mobile-scroll svg { animation:none; }
+}
 </style>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -312,6 +407,22 @@
         <a class="nav-card" href="https://www.instagram.com/carinamoraees/" target="_blank" rel="noopener noreferrer"><span class="icon-box"><svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></span><span class="nav-body"><strong class="nav-title">Visitar Instagram</strong><span class="nav-sub">Inspirações e novidades</span></span><svg class="nav-arrow svg-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
         <a class="nav-card" href="https://www.google.com/maps/place/Carina+Moraes+-+Sal%C3%A3o+de+Beleza+Unissex/data=!4m2!3m1!1s0x0:0xc336505894577a49?sa=X&amp;ved=1t:2428&amp;hl=pt-BR&amp;ictx=111" target="_blank" rel="noopener noreferrer"><span class="icon-box"><svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 2.9 6 6.6 1-4.8 4.7 1.1 6.6L12 17.2l-5.8 3.1 1.1-6.6L2.5 9l6.6-1L12 2Z"/></svg></span><span class="nav-body"><strong class="nav-title">Ver avaliações no Google</strong><span class="nav-sub">Confira o perfil e as avaliações</span></span><svg class="nav-arrow svg-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
       </div>
+    </section>
+
+    <!-- Comparativo em camada: duas imagens independentes, sem dependências externas. -->
+    <section class="section carina-compare" id="antes-depois" data-reveal aria-labelledby="carina-compare-heading">
+      <div class="section-head"><span class="kicker">Do início ao acabamento</span><span class="rule"></span></div>
+      <h2 class="title" id="carina-compare-heading">Um novo caimento, <em style="color:var(--pink);font-weight:500">outra sensação.</em></h2>
+      <p class="description">Deslize o marcador e perceba a diferença entre os dois momentos.</p>
+      <div class="carina-compare__stage" id="carinaCompareStage">
+        <img class="carina-compare__image carina-compare__before" src="https://res.cloudinary.com/jcotat5a/image/upload/f_auto,q_auto:good,c_limit,w_960/v1792241584/624451bc-70e5-441a-95f7-215a05178adf.png" alt="Cabelo antes do atendimento" loading="lazy" decoding="async">
+        <img class="carina-compare__image carina-compare__after" src="https://res.cloudinary.com/jcotat5a/image/upload/f_auto,q_auto:good,c_limit,w_960/v1792241653/82b1ab40-0352-4d7d-8c6f-c29b15382932.png" alt="Cabelo depois do atendimento" loading="lazy" decoding="async">
+        <span class="carina-compare__tag carina-compare__tag--before" aria-hidden="true">Antes</span>
+        <span class="carina-compare__tag carina-compare__tag--after" aria-hidden="true">Depois</span>
+        <span class="carina-compare__divider" aria-hidden="true"><span class="carina-compare__handle">‹&nbsp;›</span></span>
+        <input class="carina-compare__range" id="carinaCompareRange" type="range" min="0" max="100" value="50" step="1" aria-label="Comparar as fotos de antes e depois" aria-valuetext="50% da foto de antes e 50% da foto de depois">
+      </div>
+      <p class="carina-compare__note">Arraste para os lados ou use as setas do teclado.</p>
     </section>
 
     <section class="section" id="servicos" data-reveal>
@@ -541,6 +652,21 @@
         },{threshold:.25});obs.observe(root);
       }else{visible=true;startAuto();}
       place(false);
+    })();
+  </script>
+  <script>
+    /* Slider acessível, sem interferir no scroll vertical ou nos carrosséis. */
+    (()=>{
+      const stage=document.getElementById('carinaCompareStage');
+      const input=document.getElementById('carinaCompareRange');
+      if(!stage||!input)return;
+      function update(){
+        const value=Number(input.value);
+        stage.style.setProperty('--carina-split',value+'%');
+        input.setAttribute('aria-valuetext',value+'% da foto de antes e '+(100-value)+'% da foto de depois');
+      }
+      input.addEventListener('input',update,{passive:true});
+      update();
     })();
   </script>
 </body>
